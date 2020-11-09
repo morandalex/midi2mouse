@@ -1,0 +1,23 @@
+{
+  "name": "midi2mouse",
+  "version": "1.0.0",
+  "description": "The idea behind this project is to connect  the control that we have using midi with the mouse or keyboard control using Nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morandalex/midi2mouse.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/morandalex/midi2mouse/issues"
+  },
+  "homepage": "https://github.com/morandalex/midi2mouse#readme",
+  "dependencies": {
+    "easymidi": "^2.0.1",
+    "robotjs": "^0.6.0"
+  }
+}
