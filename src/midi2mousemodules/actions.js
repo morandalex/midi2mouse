@@ -1,8 +1,5 @@
 module.exports = {
-  midiccmove: async function(
-    channel, controller,
-    axis, x, y, pixelmove, speed
-  ) {
+  midiccmove: async function(channel, controller,axis, x, y, pixelmove, speed) {
     var robot = require("robotjs");
     var Bluebird = require("bluebird");
     var i = require(process.env.MI2MOUSEMODULES+'midiobj.js');
@@ -37,12 +34,7 @@ module.exports = {
       });
     }).catch(console.log)
   },
-  midinoteonclick: async function(
-    channel,
-    note,
-    velocity,
-    ifdoubleclick
-  ) {
+  midinoteonclick: async function(channel,note,ifdoubleclick) {
 
     var robot = require("robotjs");
     var Bluebird = require("bluebird");

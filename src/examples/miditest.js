@@ -21,29 +21,27 @@
   );
   parallelproc.push(
     s.midiccmove(
-      '0',
-      '7',
-      'x',
-      1791,
-      1005,
-      70,
-      1
+      '0', // channel
+      '7', // controller
+      'x', // axis : on which axis I want the move :  x = x axis, y = y axis
+      500, // x  : position of x in the first position
+      500, // y  : position of x in the first position
+      500, // pixelmove
+      1    // speed
     )
   );
   parallelproc.push(
     s.midinoteonclick(
-      '0',
-      '0',
-      '127',
-      true
+      '0',   // channel
+      '0',   // note
+      true   // ifdoubleclick : true = doubleclick, false = only one click
     )
   );
   parallelproc.push(
     s.midinoteonclick(
-      '0',
-      '1',
-      '127',
-      false
+      '0',    // channel
+      '1',    // note
+      false   // ifdoubleclick : true = doubleclick, false= only one click
     )
   );
   Promise.all(parallelproc).then(function() {
