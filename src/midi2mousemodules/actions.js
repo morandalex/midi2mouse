@@ -5,7 +5,7 @@ module.exports = {
   ) {
     var robot = require("robotjs");
     var Bluebird = require("bluebird");
-    var i = require('C:\\nodepro\\midi2mouse\\src\\conv\\midiobj.js');
+    var i = require(process.env.MI2MOUSEMODULES+'midiobj.js');
     var screenSize = robot.getScreenSize();
     var height = screenSize.height;
     robot.mouseToggle('up');
@@ -18,7 +18,7 @@ module.exports = {
             var mouse = robot.getMousePos();
             robot.mouseToggle('down');
             robot.moveMouse(x, height - (y + midimsg.value * (pixelmove) / 127));
-            console.log('midi msg :' + JSON.stringify(midimsg) + 'and mouse pos now is  x=' + mouse.x + " y=" + mouse.y)
+          //  console.log('midi msg :' + JSON.stringify(midimsg) + 'and mouse pos now is  x=' + mouse.x + " y=" + mouse.y)
             if (midimsg.value * (pixelmove) / 127 <= pixelmove - 5) {
               robot.mouseToggle('down');
             }
@@ -27,12 +27,12 @@ module.exports = {
             var mouse = robot.getMousePos();
             robot.mouseToggle('down');
             robot.moveMouse(x + midimsg.value * (pixelmove) / 127, y);
-            console.log('midi msg :' + JSON.stringify(midimsg) + 'and mouse pos now is  x=' + mouse.x + " y=" + mouse.y)
+        //    console.log('midi msg :' + JSON.stringify(midimsg) + 'and mouse pos now is  x=' + mouse.x + " y=" + mouse.y)
           }
         } else {
           robot.mouseToggle('up');
           var mouse = robot.getMousePos();
-          console.log(JSON.stringify(midimsg) + ' and mouse pos now is  x=' + mouse.x + " y=" + mouse.y)
+      //    console.log(JSON.stringify(midimsg) + ' and mouse pos now is  x=' + mouse.x + " y=" + mouse.y)
         }
       });
     }).catch(console.log)
@@ -43,10 +43,10 @@ module.exports = {
     velocity,
     ifdoubleclick
   ) {
-    var easymidi = require('easymidi');
+
     var robot = require("robotjs");
     var Bluebird = require("bluebird");
-    var i = require('C:\\nodepro\\midi2mouse\\src\\conv\\midiobj.js');
+    var i = require(process.env.MI2MOUSEMODULES+'midiobj.js');
     var input = i.inputmidi;
     Bluebird.try(async () => {
       const auth = await input.on('noteon', function(midimsg) {
@@ -57,11 +57,38 @@ module.exports = {
             robot.mouseClick('left');
           }
           var mouse = robot.getMousePos();
-          console.log(JSON.stringify(midimsg) + ' and mouse pos now is  x=' + mouse.x + " y=" + mouse.y)
+        //  console.log(JSON.stringify(midimsg) + ' and mouse pos now is  x=' + mouse.x + " y=" + mouse.y)
         } else {
           var mouse = robot.getMousePos();
-          console.log(JSON.stringify(midimsg) + ' and mouse pos now is  x=' + mouse.x + " y=" + mouse.y)
+      //    console.log(JSON.stringify(midimsg) + ' and mouse pos now is  x=' + mouse.x + " y=" + mouse.y)
         }
+      });
+    }).catch(console.log)
+  },
+  midimousedatanoteon: async function(){
+    var robot = require("robotjs");
+    var Bluebird = require("bluebird");
+    var i = require(process.env.MI2MOUSEMODULES+'midiobj.js');
+    var input = i.inputmidi;
+    Bluebird.try(async () => {
+      const auth = await input.on('noteon', function(midimsg) {
+        console.log(midimsg)
+        var mouse = robot.getMousePos();
+        console.log("x=" + mouse.x + "y=" + mouse.y)
+      });
+    }).catch(console.log)
+  },
+  midimousedatacc: async function(){
+
+    var robot = require("robotjs");
+    var Bluebird = require("bluebird");
+    var i = require(process.env.MI2MOUSEMODULES+'midiobj.js');
+    var input = i.inputmidi;
+    Bluebird.try(async () => {
+      const auth = await input.on('cc', function(midimsg) {
+        console.log(midimsg)
+        var mouse = robot.getMousePos();
+        console.log("x=" + mouse.x + "y=" + mouse.y)
       });
     }).catch(console.log)
   }

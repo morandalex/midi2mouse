@@ -1,15 +1,24 @@
+  //dependencies
+  var dotenv = require('dotenv');
+  dotenv.config({ path: 'globalvar.env' })
+  var robot = require("robotjs");
+  var Bluebird = require("bluebird");
+  const s = require(process.env.MI2MOUSEMODULES+'actions.js');
+
   //check inputs and update midiobj.js
   var easymidi = require('easymidi');
   var inputs = easymidi.getInputs();
   console.log(inputs);
 
-  //dependencies
-  var robot = require("robotjs");
-  var Bluebird = require("bluebird");
-  const s = require('C:\\nodepro\\midi2mouse\\src\\conv\\actions.js');
-
   //midi commands handled in parallel
   var parallelproc = [];
+
+  parallelproc.push(
+    s.midimousedatanoteon()
+  );
+  parallelproc.push(
+    s.midimousedatacc()
+  );
   parallelproc.push(
     s.midiccmove(
       '0',
@@ -38,5 +47,5 @@
     )
   );
   Promise.all(parallelproc).then(function() {
-    console.log("all the files were created");
+    console.log("midi commands loaded");
   });

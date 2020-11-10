@@ -25,6 +25,11 @@ Open a terminal and :
 
     npm install
 
+Then open the globalvar.env file, and write the path of the folder where you are the midi2mouse modules.
+In that sense you can use the library in a different OS.
+
 ## Start locally with examples
+
+in the root directory of the project type and run the tests inside the example folder:
 
     node src/examples/miditest.js
