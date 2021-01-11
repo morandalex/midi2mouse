@@ -1,4 +1,4 @@
-# midi2mouse
+# midi 2 software automation
 
 The idea behind this project is to connect  the midi signal  with the mouse or keyboard control using Nodejs
 

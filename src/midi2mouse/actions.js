@@ -126,7 +126,12 @@ module.exports = {
     var screenSize = robot.getScreenSize();
     var height = screenSize.height;
     var width = screenSize.width;
+    try{
     var i = require(process.env.MI2MOUSEMODULES + 'midiobj.js');
+}
+catch(err) {
+  console.log (err);
+}
     var input = i.inputmidi;
     robot.mouseToggle('up');
     Bluebird.try(async () => {
